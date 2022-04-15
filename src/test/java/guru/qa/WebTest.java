@@ -6,8 +6,13 @@ import com.codeborne.selenide.conditions.Text;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -55,6 +60,49 @@ public class WebTest {
         $$(".serp-item")
                 .find(Condition.text(expectedResult))
                 .shouldBe(Condition.visible);
+    }
+
+
+    static Stream<Arguments> methodSourceExampleTest(){
+        return Stream.of(
+                Arguments.of("first string", List.of(42,54,83)),
+                Arguments.of("second string", List.of(44,51,88))
+        );
+
+
+    }
+    /*
+     дата-провайдер @MethodSource() передает данные полученные изметода methodSourceExampleTest,
+     может использоваться для передачи нескольких строк из метода
+
+         @ValueSource(strings = {
+         "Selenide",
+         "JUnit"
+         )}
+         можно записать через @methodSource
+         static Stream<Arguments> methodSourceExampleTest(){
+         return Stream.of(
+                Arguments.of("Selenide", "Junit")),
+         );
+
+
+
+         @CsvSource(value = {
+            "Selenide, is an open source library for test",
+             "JUnit, Support JUnit"
+         можно записать через @methodSource
+         static Stream<Arguments> methodSourceExampleTest(){
+         return Stream.of(
+                Arguments.of("first string", "is an open source library for test")),
+                Arguments.of("second string", "Support JUnit"))
+        );
+
+     */
+
+    @MethodSource("methodSourceExampleTest")
+    @ParameterizedTest
+    void methodSourceExampleTest(String first,List<Integer> second){
+        System.out.println(first + "and list" + second);
     }
 }
 
