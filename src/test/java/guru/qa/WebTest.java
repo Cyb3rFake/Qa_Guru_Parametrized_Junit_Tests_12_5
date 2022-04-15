@@ -124,5 +124,5 @@ public class WebTest {
     @AfterEach
     void close(){
         Selenide.closeWebDriver();
-    }
+        }
     }
