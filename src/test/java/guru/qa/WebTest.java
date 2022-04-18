@@ -65,8 +65,8 @@ public class WebTest {
 
     static Stream<Arguments> methodSourceExampleTest(){
         return Stream.of(
-                Arguments.of("first string", List.of(42,54,83)),
-                Arguments.of("second string", List.of(44,51,88))
+                Arguments.of("first string", List.of("one",2,"for")),
+                Arguments.of("second string", List.of("asd",51,88))
         );
 
 
@@ -102,7 +102,7 @@ public class WebTest {
     @MethodSource("methodSourceExampleTest")
     @ParameterizedTest
     void methodSourceExampleTest(String first,List<Integer> second){
-        System.out.println(first + "and list" + second);
+        System.out.println(first + " and list" + second);
     }
 }
 
