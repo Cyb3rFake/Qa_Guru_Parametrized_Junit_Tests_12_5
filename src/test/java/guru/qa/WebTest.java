@@ -66,8 +66,6 @@ public class WebTest {
                 Arguments.of("first string", List.of(42,54,83)),
                 Arguments.of("second string", List.of(44,51,88))
         );
-
-
     }
     /*
      дата-провайдер @MethodSource() передает данные полученные изметода methodSourceExampleTest,
@@ -82,9 +80,6 @@ public class WebTest {
          return Stream.of(
                 Arguments.of("Selenide", "Junit")),
          );
-
-
-
          @CsvSource(value = {
             "Selenide, is an open source library for test",
              "JUnit, Support JUnit"
@@ -123,6 +118,7 @@ public class WebTest {
         }
     @AfterEach
     void close(){
+
         Selenide.closeWebDriver();
         }
     }
